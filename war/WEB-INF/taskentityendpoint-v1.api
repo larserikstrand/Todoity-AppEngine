@@ -27,48 +27,6 @@
   "ownerName" : "hig.no",
   "packagePath" : "strand.lars.todoity",
   "methods" : {
-    "taskentityendpoint.removeTaskEntity" : {
-      "path" : "taskentity/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "no.hig.strand.lars.todoity.TaskEntityEndpoint.removeTaskEntity",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
-    "taskentityendpoint.getTaskEntity" : {
-      "path" : "taskentity/{id}",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "no.hig.strand.lars.todoity.TaskEntityEndpoint.getTaskEntity",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "taskentityendpoint.listTaskEntity" : {
       "path" : "taskentity",
       "httpMethod" : "GET",
@@ -92,6 +50,48 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "taskentityendpoint.getTaskEntity" : {
+      "path" : "taskentity/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "no.hig.strand.lars.todoity.TaskEntityEndpoint.getTaskEntity",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "taskentityendpoint.removeTaskEntity" : {
+      "path" : "taskentity/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "no.hig.strand.lars.todoity.TaskEntityEndpoint.removeTaskEntity",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
       }
     },
     "taskentityendpoint.insertTaskEntity" : {
@@ -129,6 +129,21 @@
   },
   "descriptor" : {
     "schemas" : {
+      "CollectionResponse_TaskEntity" : {
+        "id" : "CollectionResponse_TaskEntity",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "TaskEntity"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
       "TaskEntity" : {
         "id" : "TaskEntity",
         "type" : "object",
@@ -177,35 +192,20 @@
             "type" : "boolean"
           }
         }
-      },
-      "CollectionResponse_TaskEntity" : {
-        "id" : "CollectionResponse_TaskEntity",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "TaskEntity"
-            }
-          },
-          "nextPageToken" : {
-            "type" : "string"
-          }
-        }
       }
     },
     "methods" : {
-      "no.hig.strand.lars.todoity.TaskEntityEndpoint.removeTaskEntity" : {
+      "no.hig.strand.lars.todoity.TaskEntityEndpoint.listTaskEntity" : {
+        "response" : {
+          "$ref" : "CollectionResponse_TaskEntity"
+        }
       },
       "no.hig.strand.lars.todoity.TaskEntityEndpoint.getTaskEntity" : {
         "response" : {
           "$ref" : "TaskEntity"
         }
       },
-      "no.hig.strand.lars.todoity.TaskEntityEndpoint.listTaskEntity" : {
-        "response" : {
-          "$ref" : "CollectionResponse_TaskEntity"
-        }
+      "no.hig.strand.lars.todoity.TaskEntityEndpoint.removeTaskEntity" : {
       },
       "no.hig.strand.lars.todoity.TaskEntityEndpoint.insertTaskEntity" : {
         "request" : {

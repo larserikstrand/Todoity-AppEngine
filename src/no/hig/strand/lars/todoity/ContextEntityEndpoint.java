@@ -1,6 +1,12 @@
 package no.hig.strand.lars.todoity;
 
-import no.hig.strand.lars.todoity.EMF;
+import java.util.List;
+
+import javax.annotation.Nullable;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -8,15 +14,6 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
-
-import java.util.List;
-
-import javax.annotation.Nullable;
-import javax.inject.Named;
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 @Api(name = "contextentityendpoint", namespace = @ApiNamespace(ownerDomain = "hig.no", ownerName = "hig.no", packagePath = "strand.lars.todoity"))
 public class ContextEntityEndpoint {
@@ -99,9 +96,6 @@ public class ContextEntityEndpoint {
 	public ContextEntity insertContextEntity(ContextEntity contextentity) {
 		EntityManager mgr = getEntityManager();
 		try {
-			if (containsContextEntity(contextentity)) {
-				throw new EntityExistsException("Object already exists");
-			}
 			mgr.persist(contextentity);
 		} finally {
 			mgr.close();
